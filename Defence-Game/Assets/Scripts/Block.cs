@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+    public bool isExplored = false;
+    public Block parent;
     // Start is called before the first frame update
     public Vector2 GetBlockPosition()
     {
-        return new Vector2(transform.position.x, transform.position.z);
+        return new Vector2(transform.position.x/10, transform.position.z/10);
     }
 
     public void BlockColor(Color color)
