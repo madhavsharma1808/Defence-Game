@@ -23,8 +23,11 @@ public class EditorSnap : MonoBehaviour
         transform.position = position;
         textMesh = GetComponentInChildren<TextMesh>();
         string objectText= (position.x / 10) + "," + (position.z / 10);
-        textMesh.text = objectText;
-        gameObject.name = objectText;
+        if (gameObject.tag == "player")
+        {
+            textMesh.text = objectText;
+            gameObject.name = objectText;
+        }
     }
 
    

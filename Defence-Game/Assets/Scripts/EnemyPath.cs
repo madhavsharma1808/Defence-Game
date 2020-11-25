@@ -18,8 +18,9 @@ public class EnemyPath : MonoBehaviour
     {
 
         for (int i = 0; i < blockList.Count; i++)
-        { 
-            transform.position = blockList[i].transform.position;
+        {
+            Vector3 pos = new Vector3(blockList[i].transform.position.x, transform.position.y, blockList[i].transform.position.z);
+            transform.position =pos;
             yield return new WaitForSeconds(1f);
         }
     }
