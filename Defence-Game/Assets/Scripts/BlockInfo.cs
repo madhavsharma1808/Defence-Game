@@ -20,11 +20,25 @@ public class BlockInfo : MonoBehaviour
     public List<Block> pathTobeFollowed = new List<Block>();
     void Start()
     {
-        ChangingStartAndEndColor();
-        AddToDictionary();
-        path.Enqueue(startPoint);
-        startPoint.isExplored = true;
+        
+    }
 
+    public List<Block> GetPath()
+    {
+        if (pathTobeFollowed.Count == 0)  //Bcz it will casuse error in the other enemys instnatiated
+        {
+            ChangingStartAndEndColor();
+            AddToDictionary();
+            path.Enqueue(startPoint);
+            startPoint.isExplored = true;
+            BreadthFirstSearch();
+            GetPathList();
+        }
+        return pathTobeFollowed;
+    }
+
+    void BreadthFirstSearch()
+    {
         while (path.Count > 0 && !destinationReached)
         {
             Block dequeueBlock = path.Dequeue();
@@ -32,7 +46,6 @@ public class BlockInfo : MonoBehaviour
             //Debug.Log("Searching From" + dequeueBlock);
             ExploreNeighbours(dequeueBlock);
         }
-        GetPathList();
     }
 
     void CheckForFinalBlock(Block dequeueBlock)
@@ -101,9 +114,11 @@ public class BlockInfo : MonoBehaviour
         while (temp != startPoint)
         {            
             pathTobeFollowed.Add(temp);
+            temp.isPlaceable = false;
             temp = temp.parent;
         }
         pathTobeFollowed.Add(startPoint);
+        startPoint.isPlaceable = false;
         
         pathTobeFollowed.Reverse();
        

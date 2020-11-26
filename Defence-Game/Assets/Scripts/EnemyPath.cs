@@ -10,7 +10,7 @@ public class EnemyPath : MonoBehaviour
     void Start()
     {
         BlockInfo blockInfo = FindObjectOfType<BlockInfo>();
-        blockList = blockInfo.pathTobeFollowed;
+        blockList = blockInfo.GetPath();
         StartCoroutine(BlockWayPoints());
     }
 
@@ -21,7 +21,7 @@ public class EnemyPath : MonoBehaviour
         {
             Vector3 pos = new Vector3(blockList[i].transform.position.x, transform.position.y, blockList[i].transform.position.z);
             transform.position =pos;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
         }
     }
 }
