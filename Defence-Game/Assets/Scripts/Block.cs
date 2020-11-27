@@ -6,7 +6,10 @@ public class Block : MonoBehaviour
 {
     public bool isExplored = false;
     public bool isPlaceable = true;
+    public bool isTower = false;
     public Block parent;
+    [SerializeField] GameObject tower;
+    
     // Start is called before the first frame update
     public Vector2 GetBlockPosition()
     {
@@ -18,17 +21,18 @@ public class Block : MonoBehaviour
         MeshRenderer meshRenderer = transform.Find("top").GetComponent<MeshRenderer>();
         meshRenderer.material.color = color;
     }
-
+    
     private void OnMouseOver()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            if (isPlaceable)
+            if (isPlaceable&&!isTower)
             {
-                print("Can place "+gameObject.name);
+                FindObjectOfType<TowerInstantiating>().Addnew(this);
             }
             else
             {
+                print(gameObject.name+"--"+isPlaceable+"--"+isTower);
                 print("Can't place");
             }
         }

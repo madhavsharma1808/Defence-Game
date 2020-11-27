@@ -25,7 +25,7 @@ public class EditorSnap : MonoBehaviour
         string objectText= (position.x / 10) + "," + (position.z / 10);
         if (gameObject.tag == "player")
         {
-            textMesh.text = objectText;
+           // textMesh.text = objectText;
             gameObject.name = objectText;
         }
     }

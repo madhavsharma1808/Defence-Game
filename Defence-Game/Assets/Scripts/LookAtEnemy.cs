@@ -8,7 +8,7 @@ public class LookAtEnemy : MonoBehaviour
     [SerializeField] Transform observingObject;
     [SerializeField] float attackRange = 30f;
     [SerializeField] ParticleSystem projectylePath;
-
+    public Block standingBlock;
     private void Update()
     {
 
